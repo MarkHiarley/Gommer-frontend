@@ -1,44 +1,28 @@
 import { useEffect, useState } from "react";
-import { pegarRestaurantes } from "../api/Restaurantes";
+import IconRestaurante from "./IconRestaurante";
+import dadosRestaurantes from "../utils/dadosRestaurantes";
+import Restaurante from "../types/Restaurante";
 
-interface Restaurante {
-    id: number;
-    foto: string;
-    nome: string;
-    endereco: string;
-}
+
 
 const BoxRestaurantes = () => {
-    const [restaurantes, setRestaurantes] = useState<Restaurante[]>([]);
-
+  
+    const [restaurantes , setRestaurantes] = useState<Restaurante[]>([]);
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await pegarRestaurantes();
-                if (Array.isArray(data)) {
-                    setRestaurantes(data);
-                } else {
-                    console.error("Dados recebidos não são um array:", data);
-                }
-            } catch (error) {
-                console.error("Erro ao pegar restaurantes:", error);
-            }
-        };
+        const fetchData = async() =>{
+        const data = await dadosRestaurantes();
+        setRestaurantes(data)
+        }
 
-        fetchData();
+        fetchData()
     }, []);
 
     return (
         <div>
-            <div>
-                {restaurantes.map((restaurante) => (
-                    <div key={restaurante.id}>
-                        <img src={restaurante.foto} alt={restaurante.nome} />
-                        <p>{restaurante.nome}</p>
-                        <p>{restaurante.endereco}</p>
-                        <span>box aqui</span>
-                    </div>
-                ))}
+             <div>
+               {
+            //mandar os dados como props e criar varios componentes seguindo a logica do map 
+               }
             </div>
         </div>
     );
